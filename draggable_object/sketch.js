@@ -19,4 +19,3 @@ function draw() {
     background(50, 89, 100);
     widget.display();
 }
-

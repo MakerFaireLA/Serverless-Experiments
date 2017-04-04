@@ -1,28 +1,34 @@
 // pickUp class
-function pickUp() {
-    this.x = 355;
-    this.y = 200;
-    this.r = 20;
-    this.col = color(255, 100);
-    this.grabbed = false;
+class pickUp {
+  constructor(){
+      this.x = 355;
+      this.y = 200;
+      this.r = 20;
+      this.col = color(255, 100);
+      this.grabbed = false;
+      this.offsetX;
+      this.offsetY;
+  }
 
-    this.myMousePressed = function() {
+    myMousePressed() {
         if(dist(this.x, this.y, mouseX, mouseY) < this.r) {
             this.grabbed = true;
+            this.offsetX = this.x - mouseX;
+            this.offsetY = this.y - mouseY;
         }
     }
 
-    this.myMouseReleased = function() {
+    myMouseReleased() {
         if(dist(this.x, this.y, mouseX, mouseY) < this.r) {
             this.grabbed = false;
         }
     }
 
-    this.display = function() {
+    display() {
         if(this.grabbed) {
             this.col = color(250, 80, 120);
-            this.x = mouseX;
-            this.y = mouseY;           
+            this.x = mouseX + this.offsetX;
+            this.y = mouseY + this.offsetY;
         } else {
             this.col = color(250, 100);
         }
