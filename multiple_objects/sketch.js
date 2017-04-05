@@ -1,21 +1,34 @@
 
 var widget;
+var selected;
 
 function setup() {
     createCanvas(710, 400);
     // Create object
-    widget = new pickUp;
+    widget = [];
+    for(var i = 0; i < 20; ++i)
+    {
+      widget[i] = new pickUp(i);
+    }
 }
 
 function mousePressed() {
-    widget.myMousePressed();
+    selected.myMousePressed();
 }
 
 function mouseReleased() {
-    widget.myMouseReleased();
+  widget.forEach(function(obj) {
+  obj.myMouseReleased();
+});
 }
 
 function draw() {
     background(50, 89, 100);
-    widget.display();
+
+    widget.forEach(function(obj) {
+    obj.myMouseHover();
+    obj.myDisplay();
+  });
+  console.log(selected);
+
 }

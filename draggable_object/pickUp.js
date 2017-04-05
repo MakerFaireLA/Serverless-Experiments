@@ -10,6 +10,12 @@ class pickUp {
       this.offsetY;
   }
 
+    myMouseHover() {
+      if(dist(this.x, this.y, mouseX, mouseY) < this.r) {
+          selected = this;
+      }
+    }
+
     myMousePressed() {
         if(dist(this.x, this.y, mouseX, mouseY) < this.r) {
             this.grabbed = true;
@@ -19,13 +25,11 @@ class pickUp {
     }
 
     myMouseReleased() {
-        if(dist(this.x, this.y, mouseX, mouseY) < this.r) {
             this.grabbed = false;
-        }
     }
 
-    display() {
-        if(this.grabbed) {
+    myDisplay() {
+        if(this.grabbed && selected == this) {
             this.col = color(250, 80, 120);
             this.x = mouseX + this.offsetX;
             this.y = mouseY + this.offsetY;
