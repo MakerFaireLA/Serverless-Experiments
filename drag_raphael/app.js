@@ -5,9 +5,12 @@ window.onload = function() {
     obj.attr({fill: '#000', stroke: 'none', cursor: "move"});
 
     var move = function(dx, dy) {
-        this.attr({x: this.attr("x") + dx, y: this.attr("y") + dy});
+        this.attr({x: this.ox + dx, y: this.oy + dy});
     }
-    var start = function() {}
+    var start = function() {
+        this.ox = this.attr("x");
+        this.oy = this.attr("y");
+    }
     var end = function() {}
 
     obj.drag(move, start, end);
